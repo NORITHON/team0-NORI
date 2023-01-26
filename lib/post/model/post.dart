@@ -1,39 +1,62 @@
 // To parse this JSON data, do
 //
-//     final welcome = welcomeFromJson(jsonString);
+//     final post = postFromJson(jsonString);
 
 import 'dart:convert';
 
 class Post {
-  // Post({
-  //   this.colorScheme,
-  //   this.instructions,
-  // });
+  Post({
+    this.imageUrl,
+    this.text,
+    this.updatedAt,
+    this.createdAt,
+    this.completed,
+    this.deleted,
+  });
 
-  // String colorScheme;
-  // List<String> instructions;
+  String? imageUrl;
+  String? text;
+  int? updatedAt;
+  int? createdAt;
+  bool? completed;
+  bool? deleted;
 
-  // Post copyWith({
-  //   String uid,
-  //   String title,
-  //   String content,
-  // }) =>
-  // Post(
-  //   colorScheme: colorScheme ?? this.colorScheme,
-  //   instructions: instructions ?? this.instructions,
-  // );
+  Post copyWith({
+    String? imageUrl,
+    String? text,
+    int? updatedAt,
+    int? createdAt,
+    bool? completed,
+    bool? deleted,
+  }) =>
+      Post(
+        imageUrl: imageUrl ?? this.imageUrl,
+        text: text ?? this.text,
+        updatedAt: updatedAt ?? this.updatedAt,
+        createdAt: createdAt ?? this.createdAt,
+        completed: completed ?? this.completed,
+        deleted: deleted ?? this.deleted,
+      );
 
-  // factory Post.fromRawJson(String str) => Post.fromJson(json.decode(str));
+  factory Post.fromRawJson(String str) => Post.fromJson(json.decode(str));
 
-  // String toRawJson() => json.encode(toJson());
+  String toRawJson() => json.encode(toJson());
 
-  // factory Post.fromJson(Map<String, dynamic> json) => Welcome(
-  //       colorScheme: json["colorScheme"],
-  //       instructions: List<String>.from(json["instructions"].map((x) => x)),
-  //     );
+  factory Post.fromJson(Map<String, dynamic> json) => Post(
+        imageUrl: json["imageUrl"],
+        text: json["text"],
+        updatedAt: json["updatedAt"],
+        createdAt: json["createdAt"],
+        completed: json["completed"],
+        deleted: json["deleted"],
+      );
 
-  // Map<String, dynamic> toJson() => {
-  //       "colorScheme": colorScheme,
-  //       "instructions": List<dynamic>.from(instructions.map((x) => x)),
-  //     };
+  Map<String, dynamic> toJson() => {
+        "imageUrl": imageUrl,
+        "text": text,
+        "updatedAt": updatedAt,
+        "createdAt": createdAt,
+        "completed": completed,
+        "deleted": deleted,
+      };
 }
