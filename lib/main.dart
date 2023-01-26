@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_norithon_team0/post/view/post_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const PostView(),
     );
   }
 }
