@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:intl/intl.dart';
 
 import 'package:flutter_norithon_team0/post/model/post.dart';
 import 'package:flutter_norithon_team0/post/application/post_application.dart';
@@ -8,23 +9,56 @@ class PostController extends GetxController {
   List<Post> postList = [];
   List<Post> favoritePostList = [];
   List<Post> noriPostList = [];
+  List<bool> completeTodo = [];
   Post? selectedPost;
   String? uid;
   bool isLoaded = false;
   bool isFavorite = false;
+  bool isNori = false;
   DateTime pickedDate = DateTime.now();
+  String? timeString = "";
 
   FlutterSecureStorage storage = const FlutterSecureStorage();
 
   final PostApplication _postApplication = PostApplication();
 
-  void addDate() {
-    pickedDate.add(const Duration(days: 1));
+  Future<bool> isTodayNori(Post post) async {
+    pickedDate = DateTime.now();
+    await fetchNoriPosts();
+
+    for (Post nori in noriPostList) {
+      if (post.id == nori.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Future<void> toggleCompleteTodo(int index) async {
+    completeTodo[index] = !completeTodo[index];
+    await _postApplication.updateNoriPostCompleted(
+        noriPostList[index].id!, pickedDate, uid!, completeTodo[index]);
     update();
   }
 
-  void subtractDate() {
-    pickedDate.subtract(const Duration(days: 1));
+  void getDateByString() {
+    String monthAndDay = DateFormat('MM/dd').format(pickedDate).toString();
+    String e = DateFormat.E().format(pickedDate).toString();
+    timeString = "$monthAndDay($e)";
+    update();
+  }
+
+  Future<void> addDate() async {
+    pickedDate = pickedDate.add(const Duration(days: 1));
+    getDateByString();
+    await fetchNoriPosts();
+    update();
+  }
+
+  Future<void> subtractDate() async {
+    pickedDate = pickedDate.subtract(const Duration(days: 1));
+    getDateByString();
+    await fetchNoriPosts();
     update();
   }
 
@@ -82,7 +116,13 @@ class PostController extends GetxController {
   }
 
   Future<void> fetchNoriPosts() async {
-    await _postApplication.getNoriPosts(noriPostList, pickedDate, uid!);
+    completeTodo = [];
+    noriPostList = [];
+    await _postApplication.getNoriPosts(
+        noriPostList, completeTodo, pickedDate, uid!);
+    for (int i = 0; i < noriPostList.length; i++) {
+      completeTodo.add(false);
+    }
     update();
   }
 
@@ -108,9 +148,10 @@ class PostController extends GetxController {
     fetchPosts().then((_) async {
       var storeData = await storage.read(key: "user");
       if (storeData != null) {
-        initControllerByUid(storeData);
+        await initControllerByUid(storeData);
       }
       isLoaded = true;
+      getDateByString();
       update();
       super.onInit();
     });
