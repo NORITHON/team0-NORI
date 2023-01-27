@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,6 +43,16 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAlIbJVlYl5rRdmdBvqGByhZIXnkyRz6XQ',
+    appId: '1:777460964040:web:84d7eab95277627ceae3fd',
+    messagingSenderId: '777460964040',
+    projectId: 'norithon-2023-team0',
+    authDomain: 'norithon-2023-team0.firebaseapp.com',
+    storageBucket: 'norithon-2023-team0.appspot.com',
+    measurementId: 'G-2S6K8RV0T9',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBBs4kMMspD_E_rhMKYH9CDv6dnOkR_VKA',
     appId: '1:777460964040:android:b8b4f44942eecf9aeae3fd',
@@ -58,6 +62,16 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBAJzN_opFQX29ok7aC_ANyxfztuWi9MWA',
+    appId: '1:777460964040:ios:8a0107dc7d81305eeae3fd',
+    messagingSenderId: '777460964040',
+    projectId: 'norithon-2023-team0',
+    storageBucket: 'norithon-2023-team0.appspot.com',
+    iosClientId: '777460964040-fbtlackhbb28omlc4ek3m86ecf0l26q5.apps.googleusercontent.com',
+    iosBundleId: 'com.team0.norithon',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBAJzN_opFQX29ok7aC_ANyxfztuWi9MWA',
     appId: '1:777460964040:ios:a4c007ad184f9e8aeae3fd',
     messagingSenderId: '777460964040',
