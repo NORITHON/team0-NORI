@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_norithon_team0/post/view/add_post_view.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
@@ -32,9 +33,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'App Name',
-      theme: TodoTheme.lightThemeData,
+      theme: NoriTheme.lightThemeData,
       // home: const Home(),     navigation bar 추가 시 사용
       home: UserAuth(),
+      // home: AddPostView(),
     );
   }
 }
