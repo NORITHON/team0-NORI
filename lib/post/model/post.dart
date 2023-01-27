@@ -10,6 +10,7 @@ class Post {
     this.createdAt,
     this.completed,
     this.deleted,
+    this.hasDetail,
   });
 
   int? id;
@@ -17,9 +18,10 @@ class Post {
   String? titleImageUrl;
   String? contentImageUrl;
   String? title;
-  int? createdAt;
+  String? createdAt;
   bool? completed;
   bool? deleted;
+  bool? hasDetail;
 
   Post copyWith({
     int? id,
@@ -27,9 +29,10 @@ class Post {
     String? titleImageUrl,
     String? contentImageUrl,
     String? title,
-    int? createdAt,
+    String? createdAt,
     bool? completed,
     bool? deleted,
+    bool? hasDetail,
   }) =>
       Post(
         id: id ?? this.id,
@@ -40,6 +43,7 @@ class Post {
         createdAt: createdAt ?? this.createdAt,
         completed: completed ?? this.completed,
         deleted: deleted ?? this.deleted,
+        hasDetail: hasDetail ?? this.hasDetail,
       );
 
   factory Post.fromRawJson(String str) => Post.fromJson(json.decode(str));
@@ -54,6 +58,7 @@ class Post {
         createdAt: json["createdAt"],
         completed: json["completed"],
         deleted: json["deleted"],
+        hasDetail: json["hasDetail"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -63,5 +68,6 @@ class Post {
         "title": title,
         "completed": completed,
         "deleted": deleted,
+        "hasDetail": hasDetail,
       };
 }

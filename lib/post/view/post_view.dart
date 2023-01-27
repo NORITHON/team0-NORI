@@ -14,12 +14,10 @@ class PostView extends StatefulWidget {
 
 class PostViewState extends State<PostView> {
   final PostController _postController = Get.find();
-  List<String> postList = ['text1', 'text2'];
 
   Widget postListTile(BuildContext context) {
     return GetBuilder<PostController>(builder: (_) {
       if (_postController.isLoaded) {
-        print(_postController.postList.length);
         return ListView.builder(
             padding: const EdgeInsets.all(20),
             itemCount: _postController.postList.length,
