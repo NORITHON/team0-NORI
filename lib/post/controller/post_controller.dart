@@ -7,6 +7,7 @@ class PostController extends GetxController {
   List<Post> postList = [];
   List<Post> favoritePostList = [];
   List<Post> noriPostList = [];
+  String? uid;
   final PostApplication _postApplication = PostApplication();
 
   Future<void> createPost(Post post) async {
@@ -57,6 +58,13 @@ class PostController extends GetxController {
 
   Future<void> deleteNoriPost(Post post) async {
     await _postApplication.deleteNoriPost(post.id!);
+    await fetchNoriPosts();
+  }
+
+  Future<void> initControllerByUid(String uid) async {
+    _postApplication.uid = uid;
+    await fetchPosts();
+    await fetchFavoritePosts();
     await fetchNoriPosts();
   }
 
