@@ -22,7 +22,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
-  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
@@ -50,14 +49,14 @@ class _UserAuthState extends State<UserAuth> {
   static final storage = FlutterSecureStorage();
   PostController _postController = Get.put(PostController());
   String? uid;
-  bool hasConnected = false;
 
-  void _onBoarding() async {
+  _onBoarding() async {
     uid = await storage.read(key: "user");
 
     if (uid != null) {
-      hasConnected = true;
+      Get.to(() => PostView());
     }
+    FlutterNativeSplash.remove();
   }
 
   @override
@@ -72,11 +71,6 @@ class _UserAuthState extends State<UserAuth> {
 
   @override
   Widget build(BuildContext context) {
-    if (hasConnected) {
-      _postController.initControllerByUid(uid!);
-      return const PostView();
-    } else {
-      return const OnboardingScreen();
-    }
+    return const OnboardingScreen();
   }
 }

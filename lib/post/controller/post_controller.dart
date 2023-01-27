@@ -11,7 +11,6 @@ class PostController extends GetxController {
   final PostApplication _postApplication = PostApplication();
 
   Future<void> createPost(Post post) async {
-    print("create");
     await _postApplication.createPost(post);
     await fetchPosts();
   }
@@ -63,6 +62,7 @@ class PostController extends GetxController {
 
   Future<void> initControllerByUid(String uid) async {
     _postApplication.uid = uid;
+    this.uid = uid;
     await fetchPosts();
     await fetchFavoritePosts();
     await fetchNoriPosts();
