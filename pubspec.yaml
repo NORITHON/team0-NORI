@@ -82,9 +82,13 @@ flutter:
               - asset: assets/font/Pretendard-ExtraBold.otf
 
     # To add assets to your application, add an assets section, like this:
-    # assets:
-    #   - images/a_dot_burr.jpeg
-    #   - images/a_dot_ham.jpeg
+    assets:
+        - assets/button/button-back.png
+        - assets/button/button-favarite-not-active.png
+        - assets/button/button-favorite-active.png
+        - assets/button/button-post-url-run.png
+        - assets/image/image-post-content1.png
+        - assets/image/image-post-title1.png
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware
