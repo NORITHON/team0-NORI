@@ -10,6 +10,31 @@ class PostView extends StatefulWidget {
 }
 
 class PostViewState extends State<PostView> {
+  List<String> postList = ['text1', 'text2'];
+
+  Widget postListTile(BuildContext context) {
+    // return GetBuilder<PostController>(builder: (_postController) {
+    // return ListView.builder(
+    return Expanded(
+      child: ListView.builder(
+          padding: const EdgeInsets.all(20),
+          // itemCount: _postController.postList.length * 2,
+          itemCount: 2,
+          itemBuilder: (context, i) {
+            return Text(
+              postList[i],
+              // )
+              // return Card(
+              //   child: ListTile(
+              //     // leading: FlutterLogo(),
+              //     title: Text(postList[i]),
+              //   ),
+            );
+          }),
+    );
+    // });
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -23,32 +48,18 @@ class PostViewState extends State<PostView> {
             title: const Text('AppName'
                 // TODO: add font style
                 )),
-        body: Center(
-          child: GetBuilder<PostController>(builder: (_postController) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: 200,
-                  child: ListView(children: const <Widget>[
-                    Card(
-                      child: ListTile(
-                        leading: FlutterLogo(),
-                        title: Text('text1'),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: FlutterLogo(),
-                        title: Text('text1'),
-                      ),
-                    )
-                  ]),
-                )
-              ],
-            );
-          }),
-        ));
+      // body: RefreshIndicator(
+      //     onRefresh: () {
+      //       Future temp = "hi" as Future;
+      //       return temp;
+      //     },
+      // body: Container(
+      //   margin: const EdgeInsets.all(10.0),
+      //   width: 48.0,
+      //   height: 48.0,
+      body: postListTile(context),
+      // )
+      // )
+    );
   }
 }

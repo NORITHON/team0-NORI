@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'App Name',
       theme: TodoTheme.lightThemeData,
       // home: const Home(),     navigation bar 추가 시 사용
-      home: const PostView(),
+      home: PostView(),
     );
   }
 }
