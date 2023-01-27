@@ -48,8 +48,8 @@ class Post {
 
   factory Post.fromJson(Map<String, dynamic> json) => Post(
         imageUrl: json["imageUrl"],
-        titleImageUrl: json["imageUrl"],
-        contentImageUrl: json["imageUrl"],
+        titleImageUrl: json["titleImageUrl"],
+        contentImageUrl: json["contentImageUrl"],
         title: json["title"],
         createdAt: json["createdAt"],
         completed: json["completed"],

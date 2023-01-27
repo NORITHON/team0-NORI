@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class DetailPage extends StatefulWidget {
-  const DetailPage({super.key});
+import 'package:flutter_norithon_team0/post/controller/post_controller.dart';
+import 'package:flutter_norithon_team0/post/model/post.dart';
+
+class DetailView extends StatefulWidget {
+  const DetailView({super.key});
 
   @override
-  State<DetailPage> createState() => _DetailPageState();
+  State<DetailView> createState() => _DetailViewState();
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailViewState extends State<DetailView> {
+  final PostController _postController = Get.find();
+  Post detailPost = Post();
+
   @override
   Widget build(BuildContext context) {
+    detailPost = _postController.postList[0];
+    print(_postController.postList[0].titleImageUrl);
     return Scaffold(
-      body: Stack(
+      body: Row(
         children: [
           Expanded(
             child: Container(
@@ -22,7 +31,7 @@ class _DetailPageState extends State<DetailPage> {
                     children: [
                       Container(
                         child: Image.asset(
-                          'assets/image/image-post-title1.png',
+                          detailPost.titleImageUrl!,
                           width: double.infinity,
                           height: 400,
                           fit: BoxFit.cover,
@@ -84,8 +93,7 @@ class _DetailPageState extends State<DetailPage> {
                           padding: EdgeInsets.all(0),
                           color: Colors.white,
                           child: Image.asset(
-                              fit: BoxFit.fill,
-                              'assets/image/image-post-content1.png'),
+                              fit: BoxFit.fill, detailPost.contentImageUrl!),
                         ),
                         SizedBox(height: 26),
                         Row(

@@ -7,8 +7,15 @@ class PostController extends GetxController {
   List<Post> postList = [];
   List<Post> favoritePostList = [];
   List<Post> noriPostList = [];
+  Post? selectedPost;
   String? uid;
+  bool isLoaded = false;
   final PostApplication _postApplication = PostApplication();
+
+  void selectPost(Post post) {
+    selectedPost = post;
+    update();
+  }
 
   Future<void> createPost(Post post) async {
     await _postApplication.createPost(post);
@@ -73,6 +80,8 @@ class PostController extends GetxController {
     fetchPosts().then((_) async {
       await fetchFavoritePosts();
       await fetchNoriPosts();
+      isLoaded = true;
+      update();
       super.onInit();
     });
   }
