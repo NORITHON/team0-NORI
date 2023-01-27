@@ -16,7 +16,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  final PostController _postController = Get.find();
+  final PostController _postController = Get.put(PostController());
   static final storage = FlutterSecureStorage();
 
   PageDecoration getPageDecoration() {
@@ -64,7 +64,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         var now = DateTime.now().toString();
         await storage.write(key: "user", value: now);
         await _postController.initControllerByUid(now);
-        Get.to(() => const ParentsFormView());
+        Get.offAll(() => const ParentsFormView());
       },
       next: const Icon(
         Icons.arrow_forward,
