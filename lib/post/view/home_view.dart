@@ -62,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
                                 Image.asset(
                                     width: 30,
                                     height: 30,
-                                    'assets/button/button-childmode.png'),
+                                    'assets/button/button-kid-icon.png'),
                           ),
                         ],
                       ),
