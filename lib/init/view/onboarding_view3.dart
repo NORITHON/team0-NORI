@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_detail_norithon_2023/controller/onboarding_controller.dart';
 import 'package:get/get.dart';
 
 class OnboardingView3 extends StatefulWidget {

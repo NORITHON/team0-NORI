@@ -88,6 +88,19 @@ flutter:
         - assets/button/button-favarite-not-active.png
         - assets/button/button-favorite-active.png
         - assets/button/button-post-url-run.png
+        - assets/button/button-heart.png
+        - assets/button/button-childmode.png
+        - assets/button/button-fast-arrow-left.png
+        - assets/button/button-fast-arrow-right.png
+        - assets/button/button-next.png
+        - assets/button/button-no-click.png
+        - assets/button/button-no.png
+        - assets/button/button-normal-click.png
+        - assets/button/button-normal.png
+        - assets/button/button-skip.png
+        - assets/button/button-yes-click.png
+        - assets/button/button-yes.png
+
         - assets/image/image-post-content1.png
         - assets/image/image-post-title1.png
         - assets/image/image-todo1.png
@@ -96,13 +109,12 @@ flutter:
         - assets/image/image-selected-todo1.png
         - assets/image/image-selected-todo2.png
         - assets/image/image-selected-todo3.png
-        - assets/button/button-fast-arrow-left.png
-        - assets/button/button-fast-arrow-right.png
         - assets/image/image-add.png
-        - assets/button/button-heart.png
-        - assets/button/button-childmode.png
         - assets/image/image-profile.png
         - assets/image/image-bar.png
+        - assets/image/image-onboarding1.png
+        - assets/image/image-onboarding2.png
+        - assets/image/image-onboarding3.png
         - assets/button/button-kid-icon.png
 
         #post_add_view.dart

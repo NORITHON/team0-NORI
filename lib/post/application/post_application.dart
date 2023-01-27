@@ -83,16 +83,15 @@ class PostApplication {
   // Nori CRUD
   Future<void> createNoriPost(
       Post noriData, DateTime pickedDate, String uid) async {
-    _firestore.collection('Member').doc(uid).collection('FavoritePost').add({
+    _firestore.collection('Member').doc(uid).collection('NoriPost').add({
       "postId": noriData.id.toString(),
-      "todoData": pickedDate.toString(),
+      "todoDate": pickedDate.toString(),
+      "completed": false,
     });
   }
 
-  Future<void> getNoriPosts(
-      List<Post> storePostList, DateTime pickedDate, String uid) async {
-    print("getnori");
-    print(uid);
+  Future<void> getNoriPosts(List<Post> storePostList, List<bool> boolList,
+      DateTime pickedDate, String uid) async {
     CollectionReference<Map<String, dynamic>> reference =
         _firestore.collection('Member').doc(uid).collection('NoriPost');
     var querySnapshot = await reference.get();
@@ -100,9 +99,35 @@ class PostApplication {
     for (var doc in querySnapshot.docs) {
       Post post = await getPostById(doc.data()["postId"]);
       var todoDate = DateTime.parse(doc.data()["todoDate"]);
+      boolList.add(doc.data()["completed"]);
+      if (pickedDate.year == todoDate.year &&
+          pickedDate.month == todoDate.month &&
+          pickedDate.day == todoDate.day) storePostList.add(post);
+    }
+  }
+
+  Future<void> updateNoriPostCompleted(
+      String updateId, DateTime pickedDate, String uid, bool completed) async {
+    CollectionReference<Map<String, dynamic>> reference =
+        _firestore.collection('Member').doc(uid).collection('NoriPost');
+    var querySnapshot = await reference.get();
+
+    for (var doc in querySnapshot.docs) {
+      var todoDate = DateTime.parse(doc.data()["todoDate"]);
       var difference = pickedDate.difference(todoDate).inDays;
-      print(difference);
-      if (difference == 0) storePostList.add(post);
+      if (doc.data()["postId"] == updateId.toString() && difference == 0) {
+        DocumentReference<Map<String, dynamic>> reference = _firestore
+            .collection('Member')
+            .doc(uid)
+            .collection('NoriPost')
+            .doc(doc.id);
+        await reference.set({
+          "postId": updateId,
+          "todoDate": doc.data()["todoDate"],
+          "completed": completed
+        });
+        break;
+      }
     }
   }
 

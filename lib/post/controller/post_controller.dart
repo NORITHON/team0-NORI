@@ -14,6 +14,7 @@ class PostController extends GetxController {
   String? uid;
   bool isLoaded = false;
   bool isFavorite = false;
+  bool isNori = false;
   DateTime pickedDate = DateTime.now();
   String? timeString = "";
 
@@ -21,8 +22,22 @@ class PostController extends GetxController {
 
   final PostApplication _postApplication = PostApplication();
 
-  void toggleCompleteTodo(int index) {
+  Future<bool> isTodayNori(Post post) async {
+    pickedDate = DateTime.now();
+    await fetchNoriPosts();
+
+    for (Post nori in noriPostList) {
+      if (post.id == nori.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Future<void> toggleCompleteTodo(int index) async {
     completeTodo[index] = !completeTodo[index];
+    await _postApplication.updateNoriPostCompleted(
+        noriPostList[index].id!, pickedDate, uid!, completeTodo[index]);
     update();
   }
 
@@ -35,7 +50,6 @@ class PostController extends GetxController {
 
   Future<void> addDate() async {
     pickedDate = pickedDate.add(const Duration(days: 1));
-    print(pickedDate.toString());
     getDateByString();
     await fetchNoriPosts();
     update();
@@ -43,7 +57,6 @@ class PostController extends GetxController {
 
   Future<void> subtractDate() async {
     pickedDate = pickedDate.subtract(const Duration(days: 1));
-    print(pickedDate.toString());
     getDateByString();
     await fetchNoriPosts();
     update();
@@ -105,7 +118,8 @@ class PostController extends GetxController {
   Future<void> fetchNoriPosts() async {
     completeTodo = [];
     noriPostList = [];
-    await _postApplication.getNoriPosts(noriPostList, pickedDate, uid!);
+    await _postApplication.getNoriPosts(
+        noriPostList, completeTodo, pickedDate, uid!);
     for (int i = 0; i < noriPostList.length; i++) {
       completeTodo.add(false);
     }
@@ -134,7 +148,7 @@ class PostController extends GetxController {
     fetchPosts().then((_) async {
       var storeData = await storage.read(key: "user");
       if (storeData != null) {
-        initControllerByUid(storeData);
+        await initControllerByUid(storeData);
       }
       isLoaded = true;
       getDateByString();

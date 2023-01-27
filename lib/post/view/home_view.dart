@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:flutter_norithon_team0/post/controller/post_controller.dart';
 import 'package:flutter_norithon_team0/post/model/post.dart';
+import 'package:flutter_norithon_team0/post/view/add_post_view.dart';
 
 class TodoImage {
   String path;
@@ -201,7 +202,7 @@ class _HomeViewState extends State<HomeView> {
                     } else {
                       return InkWell(
                           onTap: () {
-                            Get.to(() => const DetailView());
+                            Get.to(() => const AddPostView());
                             // print("hi");
                           },
                           child: Image.asset(
