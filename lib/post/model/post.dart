@@ -18,7 +18,7 @@ class Post {
   String? titleImageUrl;
   String? contentImageUrl;
   String? title;
-  int? createdAt;
+  String? createdAt;
   bool? completed;
   bool? deleted;
   bool? hasDetail;
@@ -29,7 +29,7 @@ class Post {
     String? titleImageUrl,
     String? contentImageUrl,
     String? title,
-    int? createdAt,
+    String? createdAt,
     bool? completed,
     bool? deleted,
     bool? hasDetail,
