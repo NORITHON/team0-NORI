@@ -115,6 +115,7 @@ flutter:
         - assets/image/image-onboarding1.png
         - assets/image/image-onboarding2.png
         - assets/image/image-onboarding3.png
+        - assets/button/button-kid-icon.png
 
         #post_add_view.dart
         - assets/image/image-doctor-recommend1.png

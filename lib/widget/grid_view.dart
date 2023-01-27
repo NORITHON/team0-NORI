@@ -22,6 +22,8 @@ class _Grid_ViewState extends State<Grid_View> {
   @override
   Widget build(BuildContext context) {
     bool _onclick = true;
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
 
     List<Test> test = [];
     test.add(Test("손씻기", "10분동안",
@@ -66,7 +68,13 @@ class _Grid_ViewState extends State<Grid_View> {
                           )
                         : Icon(Icons.check_box, color: Colors.green),
                     isThreeLine: false,
-                    title: Text(test[index].title),
+                    title: Text(
+                      test[index].title,
+                      style: textTheme.headline3?.copyWith(
+                        color: colorScheme.primary,
+                        fontSize: 16,
+                      ),
+                    ),
                     //subtitle: Text(test[index].subtitle),
                     // trailing: Icon(Icons.check_box),
                   ),

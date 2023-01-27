@@ -24,6 +24,9 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    
     return Scaffold(
       body: GetBuilder<PostController>(builder: (_) {
         if (_postController.isLoaded) {
@@ -63,7 +66,7 @@ class _HomeViewState extends State<HomeView> {
                                 Image.asset(
                                     width: 30,
                                     height: 30,
-                                    'assets/button/button-childmode.png'),
+                                    'assets/button/button-kid-icon.png'),
                           ),
                         ],
                       ),
@@ -88,14 +91,18 @@ class _HomeViewState extends State<HomeView> {
                                   children: [
                                     Text(
                                       "성희",
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold),
+                                      style: textTheme.headline3?.copyWith(
+                                        color: colorScheme.onPrimary,
+                                        fontSize: 22,
+                                      ),
                                     ),
                                     SizedBox(width: 10),
                                     Text(
                                       "10세 . 남",
-                                      style: TextStyle(fontSize: 12),
+                                      style: textTheme.headline3?.copyWith(
+                                        color: colorScheme.background,
+                                        fontSize: 22,
+                                      ),
                                     ),
                                     SizedBox(width: 100),
                                   ],

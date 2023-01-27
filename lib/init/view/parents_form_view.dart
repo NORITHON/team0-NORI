@@ -13,9 +13,18 @@ class ParentsFormView extends StatefulWidget {
 class _ParentsFormViewState extends State<ParentsFormView> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    
     return Container(
       child: TextButton(
-        child: Text("form->home"),
+        child: Text(
+          "form->home",
+          style: textTheme.headline3?.copyWith(
+            color: colorScheme.onPrimary,
+            fontSize: 20,
+          ),
+        ),
         onPressed: () {
           Get.to(() => const HomeView());
         },
