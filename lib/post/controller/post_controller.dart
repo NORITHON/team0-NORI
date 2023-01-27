@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:flutter_norithon_team0/post/model/post.dart';
 import 'package:flutter_norithon_team0/post/application/post_application.dart';
@@ -10,10 +11,31 @@ class PostController extends GetxController {
   Post? selectedPost;
   String? uid;
   bool isLoaded = false;
+  bool isFavorite = false;
+  DateTime pickedDate = DateTime.now();
+
+  FlutterSecureStorage storage = const FlutterSecureStorage();
+
   final PostApplication _postApplication = PostApplication();
+
+  void addDate() {
+    pickedDate.add(const Duration(days: 1));
+    update();
+  }
+
+  void subtractDate() {
+    pickedDate.subtract(const Duration(days: 1));
+    update();
+  }
 
   void selectPost(Post post) {
     selectedPost = post;
+    isFavorite = false;
+    for (Post f in favoritePostList) {
+      if (f.id == post.id) {
+        isFavorite = true;
+      }
+    }
     update();
   }
 
@@ -23,6 +45,7 @@ class PostController extends GetxController {
   }
 
   Future<void> fetchPosts() async {
+    postList = [];
     await _postApplication.getPosts(postList);
     update();
   }
@@ -38,37 +61,42 @@ class PostController extends GetxController {
   }
 
   Future<void> fetchFavoritePosts() async {
-    await _postApplication.getFavoritePosts(favoritePostList);
+    await _postApplication.getFavoritePosts(favoritePostList, uid!);
     update();
   }
 
   Future<void> favoritePost(Post post) async {
-    await _postApplication.createFavoritePost(post);
+    if (isFavorite) return;
+
+    isFavorite = true;
+    await _postApplication.createFavoritePost(post, uid!);
     await fetchFavoritePosts();
   }
 
   Future<void> unFavoritePost(Post post) async {
-    await _postApplication.deleteFavoritePost(post.id!);
+    if (!isFavorite) return;
+
+    isFavorite = false;
+    await _postApplication.deleteFavoritePost(post.id!, uid!);
     await fetchFavoritePosts();
   }
 
   Future<void> fetchNoriPosts() async {
-    await _postApplication.getNoriPosts(noriPostList);
+    await _postApplication.getNoriPosts(noriPostList, pickedDate, uid!);
     update();
   }
 
   Future<void> addNoriPost(Post post) async {
-    await _postApplication.createNoriPost(post);
+    await _postApplication.createNoriPost(post, pickedDate, uid!);
     await fetchNoriPosts();
   }
 
   Future<void> deleteNoriPost(Post post) async {
-    await _postApplication.deleteNoriPost(post.id!);
+    await _postApplication.deleteNoriPost(post.id!, pickedDate, uid!);
     await fetchNoriPosts();
   }
 
   Future<void> initControllerByUid(String uid) async {
-    _postApplication.uid = uid;
     this.uid = uid;
     await fetchPosts();
     await fetchFavoritePosts();
@@ -78,8 +106,10 @@ class PostController extends GetxController {
   @override
   void onInit() {
     fetchPosts().then((_) async {
-      await fetchFavoritePosts();
-      await fetchNoriPosts();
+      var storeData = await storage.read(key: "user");
+      if (storeData != null) {
+        initControllerByUid(storeData);
+      }
       isLoaded = true;
       update();
       super.onInit();
