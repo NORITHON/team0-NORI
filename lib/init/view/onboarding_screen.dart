@@ -36,6 +36,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    
     return IntroductionScreen(
       pages: [
         // 대부분의 온보딩 스크린은 여러 페이지로 구성되어 있기 때문에, 칼럼 위젯처럼 pages 알규먼트는 리스트를 불러와야 한다.
@@ -59,7 +62,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           decoration: getPageDecoration(),
         ),
       ],
-      done: const Text('done'),
+      done: Text('done',
+          style: textTheme.headline3?.copyWith(
+            color: colorScheme.onPrimary,
+            fontSize: 20,
+          )),
       onDone: () async {
         var now = DateTime.now().toString();
         await storage.write(key: "user", value: now);
@@ -71,7 +78,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         color: Colors.cyan,
       ),
       showSkipButton: true,
-      skip: const Text('skip'),
+      skip: Text(
+        'skip',
+        style: textTheme.headline3?.copyWith(
+          color: colorScheme.onPrimary,
+          fontSize: 20,
+        ),
+      ),
       dotsDecorator: DotsDecorator(
         color: Colors.cyan,
         size: const Size(10, 10),

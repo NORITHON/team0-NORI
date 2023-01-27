@@ -10,6 +10,9 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    
     return Scaffold(
       body: Column(
         children: [
@@ -72,14 +75,18 @@ class _HomeViewState extends State<HomeView> {
                               children: [
                                 Text(
                                   "성희",
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold),
+                                  style: textTheme.headline3?.copyWith(
+                                    color: colorScheme.onPrimary,
+                                    fontSize: 22,
+                                  ),
                                 ),
                                 SizedBox(width: 10),
                                 Text(
                                   "10세 . 남",
-                                  style: TextStyle(fontSize: 12),
+                                  style: textTheme.headline3?.copyWith(
+                                    color: colorScheme.background,
+                                    fontSize: 22,
+                                  ),
                                 ),
                                 SizedBox(width: 100),
                               ],
