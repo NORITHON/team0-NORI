@@ -23,6 +23,9 @@ class _DetailViewState extends State<DetailView> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       body: GetBuilder<PostController>(builder: (_) {
         return Row(
@@ -134,11 +137,12 @@ class _DetailViewState extends State<DetailView> {
                                 height: 59,
                                 width: 272,
                                 child: ElevatedButton(
-                                  child: const Text(
+                                  child: Text(
                                     '오늘의 노리 추가하기 ',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
+                                    style: textTheme.headline3?.copyWith(
+                                      color: colorScheme.primary,
+                                      fontSize: 16,
+                                    ),
                                   ),
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
