@@ -65,6 +65,20 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+    - family: light
+      fonts:
+        - asset: assets/fonts/Pretendart-Light.otf
+    - family: Regular
+      fonts:
+        - asset: assets/fonts/Pretendart-Regular.otf
+    - family: Bold
+      fonts:
+        - asset: assets/fonts/Pretendart-Bold.otf
+    - family: Black
+      fonts:
+        - asset: assets/fonts/Pretendart-ExtraBold.otf
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
