@@ -6,6 +6,7 @@ class Post {
     this.imageUrl,
     this.titleImageUrl,
     this.contentImageUrl,
+    this.bannerImageUrl,
     this.title,
     this.createdAt,
     this.completed,
@@ -13,10 +14,11 @@ class Post {
     this.hasDetail,
   });
 
-  int? id;
+  String? id;
   String? imageUrl;
   String? titleImageUrl;
   String? contentImageUrl;
+  String? bannerImageUrl;
   String? title;
   String? createdAt;
   bool? completed;
@@ -24,10 +26,11 @@ class Post {
   bool? hasDetail;
 
   Post copyWith({
-    int? id,
+    String? id,
     String? imageUrl,
     String? titleImageUrl,
     String? contentImageUrl,
+    String? bannerImageUrl,
     String? title,
     String? createdAt,
     bool? completed,
@@ -39,6 +42,7 @@ class Post {
         imageUrl: imageUrl ?? this.imageUrl,
         titleImageUrl: titleImageUrl ?? this.titleImageUrl,
         contentImageUrl: contentImageUrl ?? this.contentImageUrl,
+        bannerImageUrl: bannerImageUrl ?? this.bannerImageUrl,
         title: title ?? this.title,
         createdAt: createdAt ?? this.createdAt,
         completed: completed ?? this.completed,
@@ -54,6 +58,7 @@ class Post {
         imageUrl: json["imageUrl"],
         titleImageUrl: json["titleImageUrl"],
         contentImageUrl: json["contentImageUrl"],
+        bannerImageUrl: json["bannerImageUrl"],
         title: json["title"],
         createdAt: json["createdAt"],
         completed: json["completed"],
@@ -65,7 +70,9 @@ class Post {
         "imageUrl": imageUrl,
         "titleImageUrl": titleImageUrl,
         "contentImageUrl": contentImageUrl,
+        "bannerImageUrl": bannerImageUrl,
         "title": title,
+        "createdAt": createdAt,
         "completed": completed,
         "deleted": deleted,
         "hasDetail": hasDetail,

@@ -13,7 +13,7 @@ class PostView extends StatefulWidget {
 }
 
 class PostViewState extends State<PostView> {
-  final PostController _postController = Get.find();
+  final PostController _postController = Get.put(PostController());
 
   Widget postListTile(BuildContext context) {
     return GetBuilder<PostController>(builder: (_) {

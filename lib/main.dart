@@ -47,13 +47,14 @@ class UserAuth extends StatefulWidget {
 
 class _UserAuthState extends State<UserAuth> {
   static final storage = FlutterSecureStorage();
-  PostController _postController = Get.put(PostController());
   String? uid;
+  PostController _postController = Get.put(PostController());
 
   _onBoarding() async {
     uid = await storage.read(key: "user");
 
     if (uid != null) {
+      _postController.initControllerByUid(uid!);
       Get.to(() => PostView());
     }
     FlutterNativeSplash.remove();
