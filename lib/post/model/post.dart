@@ -7,6 +7,7 @@ class Post {
     this.titleImageUrl,
     this.contentImageUrl,
     this.bannerImageUrl,
+    this.selectedBannerImageUrl,
     this.title,
     this.createdAt,
     this.completed,
@@ -19,6 +20,7 @@ class Post {
   String? titleImageUrl;
   String? contentImageUrl;
   String? bannerImageUrl;
+  String? selectedBannerImageUrl;
   String? title;
   String? createdAt;
   bool? completed;
@@ -31,6 +33,7 @@ class Post {
     String? titleImageUrl,
     String? contentImageUrl,
     String? bannerImageUrl,
+    String? selectedBannerImageUrl,
     String? title,
     String? createdAt,
     bool? completed,
@@ -43,6 +46,7 @@ class Post {
         titleImageUrl: titleImageUrl ?? this.titleImageUrl,
         contentImageUrl: contentImageUrl ?? this.contentImageUrl,
         bannerImageUrl: bannerImageUrl ?? this.bannerImageUrl,
+        selectedBannerImageUrl: selectedBannerImageUrl ?? this.selectedBannerImageUrl,
         title: title ?? this.title,
         createdAt: createdAt ?? this.createdAt,
         completed: completed ?? this.completed,
@@ -59,6 +63,7 @@ class Post {
         titleImageUrl: json["titleImageUrl"],
         contentImageUrl: json["contentImageUrl"],
         bannerImageUrl: json["bannerImageUrl"],
+        selectedBannerImageUrl: json["selectedBannerImageUrl"],
         title: json["title"],
         createdAt: json["createdAt"],
         completed: json["completed"],
@@ -71,6 +76,7 @@ class Post {
         "titleImageUrl": titleImageUrl,
         "contentImageUrl": contentImageUrl,
         "bannerImageUrl": bannerImageUrl,
+        "selectedBannerImageUrl": selectedBannerImageUrl,
         "title": title,
         "createdAt": createdAt,
         "completed": completed,

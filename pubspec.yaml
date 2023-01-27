@@ -45,6 +45,7 @@ dependencies:
     flutter_secure_storage: ^7.0.1
     flutter_svg: ^1.1.6
     introduction_screen: ^3.1.4
+    intl: ^0.17.0
 
 dev_dependencies:
     flutter_test:
@@ -89,6 +90,19 @@ flutter:
         - assets/button/button-post-url-run.png
         - assets/image/image-post-content1.png
         - assets/image/image-post-title1.png
+        - assets/image/image-todo1.png
+        - assets/image/image-todo2.png
+        - assets/image/image-todo3.png
+        - assets/image/image-selected-todo1.png
+        - assets/image/image-selected-todo2.png
+        - assets/image/image-selected-todo3.png
+        - assets/button/button-fast-arrow-left.png
+        - assets/button/button-fast-arrow-right.png
+        - assets/image/image-add.png
+        - assets/button/button-heart.png
+        - assets/button/button-childmode.png
+        - assets/image/image-profile.png
+        - assets/image/image-bar.png
 
         #post_add_view.dart
         - assets/image/image-doctor-recommend1.png
