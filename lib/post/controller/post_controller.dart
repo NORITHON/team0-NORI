@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:intl/intl.dart';
 
 import 'package:flutter_norithon_team0/post/model/post.dart';
 import 'package:flutter_norithon_team0/post/application/post_application.dart';
@@ -8,23 +9,43 @@ class PostController extends GetxController {
   List<Post> postList = [];
   List<Post> favoritePostList = [];
   List<Post> noriPostList = [];
+  List<bool> completeTodo = [];
   Post? selectedPost;
   String? uid;
   bool isLoaded = false;
   bool isFavorite = false;
   DateTime pickedDate = DateTime.now();
+  String? timeString = "";
 
   FlutterSecureStorage storage = const FlutterSecureStorage();
 
   final PostApplication _postApplication = PostApplication();
 
-  void addDate() {
-    pickedDate.add(const Duration(days: 1));
+  void toggleCompleteTodo(int index) {
+    completeTodo[index] = !completeTodo[index];
     update();
   }
 
-  void subtractDate() {
-    pickedDate.subtract(const Duration(days: 1));
+  void getDateByString() {
+    String monthAndDay = DateFormat('MM/dd').format(pickedDate).toString();
+    String e = DateFormat.E().format(pickedDate).toString();
+    timeString = "$monthAndDay($e)";
+    update();
+  }
+
+  Future<void> addDate() async {
+    pickedDate = pickedDate.add(const Duration(days: 1));
+    print(pickedDate.toString());
+    getDateByString();
+    await fetchNoriPosts();
+    update();
+  }
+
+  Future<void> subtractDate() async {
+    pickedDate = pickedDate.subtract(const Duration(days: 1));
+    print(pickedDate.toString());
+    getDateByString();
+    await fetchNoriPosts();
     update();
   }
 
@@ -82,7 +103,12 @@ class PostController extends GetxController {
   }
 
   Future<void> fetchNoriPosts() async {
+    completeTodo = [];
+    noriPostList = [];
     await _postApplication.getNoriPosts(noriPostList, pickedDate, uid!);
+    for (int i = 0; i < noriPostList.length; i++) {
+      completeTodo.add(false);
+    }
     update();
   }
 
@@ -111,6 +137,7 @@ class PostController extends GetxController {
         initControllerByUid(storeData);
       }
       isLoaded = true;
+      getDateByString();
       update();
       super.onInit();
     });

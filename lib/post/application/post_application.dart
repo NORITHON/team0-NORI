@@ -91,8 +91,8 @@ class PostApplication {
 
   Future<void> getNoriPosts(
       List<Post> storePostList, DateTime pickedDate, String uid) async {
-    storePostList.clear();
-
+    print("getnori");
+    print(uid);
     CollectionReference<Map<String, dynamic>> reference =
         _firestore.collection('Member').doc(uid).collection('NoriPost');
     var querySnapshot = await reference.get();
@@ -101,6 +101,7 @@ class PostApplication {
       Post post = await getPostById(doc.data()["postId"]);
       var todoDate = DateTime.parse(doc.data()["todoDate"]);
       var difference = pickedDate.difference(todoDate).inDays;
+      print(difference);
       if (difference == 0) storePostList.add(post);
     }
   }
