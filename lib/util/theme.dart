@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TodoTheme {
+class NoriTheme {
   static final Color _lightFocusColor = Colors.black.withOpacity(0.12);
 
   static ThemeData lightThemeData = themeData(lightColorScheme, _lightFocusColor);
