@@ -71,11 +71,16 @@ class AddPostViewState extends State<AddPostView> {
             ),
           ],
         ),
-        body: RefreshIndicator(
-          onRefresh: postController.fetchPosts,
-          child: Center(
-            child: postListTile(context),
-          ),
+        body: Column(
+          children: [
+            Text('이런 노리', style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: colorScheme.onPrimary)),
+            RefreshIndicator(
+              onRefresh: postController.fetchPosts,
+              child: Center(
+                child: postListTile(context),
+              ),
+            )
+          ],
         )
     );
   }
