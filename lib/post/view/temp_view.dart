@@ -39,11 +39,11 @@ class _TempViewState extends State<TempView> {
                       Post post = Post(
                           id: pList[pList.length - 1].id! + 1,
                           imageUrl: "aa",
-                          text: "abx",
-                          updatedAt: 0,
+                          title: "abx",
                           createdAt: 0,
                           completed: false,
-                          deleted: false);
+                          deleted: false
+                        );
                       await _postController.createPost(post);
                     },
                     child: Text("추가")),
@@ -54,7 +54,7 @@ class _TempViewState extends State<TempView> {
                         if (index.isOdd) return const Divider();
                         final idx = index ~/ 2;
                         return ListTile(
-                          title: Text(_postController.postList[idx].text!),
+                          title: Text(_postController.postList[idx].title!),
                         );
                       }),
                 )
