@@ -40,7 +40,6 @@ class PostViewState extends State<PostView> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     // final textTheme = Theme.of(context).textTheme;
-    print(_postController.uid);
 
     return Scaffold(
       appBar: AppBar(
