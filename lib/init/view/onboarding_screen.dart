@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_norithon_team0/init/view/parents_form_view.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -63,7 +64,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         var now = DateTime.now().toString();
         await storage.write(key: "user", value: now);
         await _postController.initControllerByUid(now);
-        Get.to(() => const PostView());
+        Get.to(() => const ParentsFormView());
       },
       next: const Icon(
         Icons.arrow_forward,
