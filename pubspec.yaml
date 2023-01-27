@@ -103,6 +103,7 @@ flutter:
         - assets/button/button-childmode.png
         - assets/image/image-profile.png
         - assets/image/image-bar.png
+        - assets/button/button-kid-icon.png
 
         #post_add_view.dart
         - assets/image/image-doctor-recommend1.png
