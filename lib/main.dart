@@ -4,6 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_norithon_team0/post/view/post_view.dart';
+import 'package:flutter_norithon_team0/post/view/home_view.dart';
 import 'package:flutter_norithon_team0/util/theme.dart';
 import 'package:flutter_norithon_team0/post/controller/post_controller.dart';
 import 'package:flutter_norithon_team0/init/view/onboarding_screen.dart';
@@ -55,7 +56,7 @@ class _UserAuthState extends State<UserAuth> {
 
     if (uid != null) {
       _postController.initControllerByUid(uid!);
-      Get.to(() => PostView());
+      Get.offAll(() => HomeView());
     }
     FlutterNativeSplash.remove();
   }
