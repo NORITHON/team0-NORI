@@ -5,6 +5,8 @@ import 'package:flutter_norithon_team0/post/application/post_application.dart';
 
 class PostController extends GetxController {
   List<Post> postList = [];
+  List<Post> favoritePostList = [];
+  List<Post> noriPostList = [];
   final PostApplication _postApplication = PostApplication();
 
   Future<void> createPost(Post post) async {
@@ -28,9 +30,42 @@ class PostController extends GetxController {
     await fetchPosts();
   }
 
+  Future<void> fetchFavoritePosts() async {
+    await _postApplication.getFavoritePosts(favoritePostList);
+    update();
+  }
+
+  Future<void> favoritePost(Post post) async {
+    await _postApplication.createFavoritePost(post);
+    await fetchFavoritePosts();
+  }
+
+  Future<void> unFavoritePost(Post post) async {
+    await _postApplication.deleteFavoritePost(post.id!);
+    await fetchFavoritePosts();
+  }
+
+  Future<void> fetchNoriPosts() async {
+    await _postApplication.getNoriPosts(noriPostList);
+    update();
+  }
+
+  Future<void> addNoriPost(Post post) async {
+    await _postApplication.createNoriPost(post);
+    await fetchNoriPosts();
+  }
+
+  Future<void> deleteNoriPost(Post post) async {
+    await _postApplication.deleteNoriPost(post.id!);
+    await fetchNoriPosts();
+  }
+
   @override
   void onInit() {
-    super.onInit();
-    fetchPosts();
+    fetchPosts().then((_) async {
+      await fetchFavoritePosts();
+      await fetchNoriPosts();
+      super.onInit();
+    });
   }
 }

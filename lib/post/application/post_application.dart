@@ -4,6 +4,7 @@ import 'package:flutter_norithon_team0/post/model/post.dart';
 
 class PostApplication {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  String uid = '0';
 
   Future<void> createPost(Post data) async {
     DocumentReference reference =
@@ -16,7 +17,7 @@ class PostApplication {
 
     CollectionReference<Map<String, dynamic>> reference =
         _firestore.collection('Post');
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await reference.get();
+    var querySnapshot = await reference.get();
 
     for (var doc in querySnapshot.docs) {
       Post post = Post.fromJson(doc.data());
@@ -46,5 +47,71 @@ class PostApplication {
 
   Future<void> deletePost(int deleteId) async {
     _firestore.collection('Post').doc(deleteId.toString()).delete();
+  }
+
+  // Favorite CRUD
+  Future<void> createFavoritePost(Post favoriteData) async {
+    DocumentReference reference = _firestore
+        .collection('Member')
+        .doc(uid)
+        .collection('FavoritePost')
+        .doc(favoriteData.id.toString());
+
+    reference.set({"createdAt": favoriteData.createdAt});
+  }
+
+  Future<void> getFavoritePosts(List<Post> storePostList) async {
+    storePostList.clear();
+
+    CollectionReference<Map<String, dynamic>> reference =
+        _firestore.collection('Member').doc(uid).collection('FavoritePost');
+    var querySnapshot = await reference.get();
+
+    for (var doc in querySnapshot.docs) {
+      Post post = await getPostById(int.parse(doc.id));
+      storePostList.add(post);
+    }
+  }
+
+  Future<void> deleteFavoritePost(int deleteId) async {
+    await _firestore
+        .collection('Member')
+        .doc(uid)
+        .collection('FavoritePost')
+        .doc(deleteId.toString())
+        .delete();
+  }
+
+  // Nori CRUD
+  Future<void> createNoriPost(Post noriData) async {
+    DocumentReference reference = _firestore
+        .collection('Member')
+        .doc(uid)
+        .collection('NoriPost')
+        .doc(noriData.id.toString());
+
+    reference.set({"createdAt": noriData.createdAt});
+  }
+
+  Future<void> getNoriPosts(List<Post> storePostList) async {
+    storePostList.clear();
+
+    CollectionReference<Map<String, dynamic>> reference =
+        _firestore.collection('Member').doc(uid).collection('NoriPost');
+    var querySnapshot = await reference.get();
+
+    for (var doc in querySnapshot.docs) {
+      Post post = await getPostById(int.parse(doc.id));
+      storePostList.add(post);
+    }
+  }
+
+  Future<void> deleteNoriPost(int deleteId) async {
+    await _firestore
+        .collection('Member')
+        .doc(uid)
+        .collection('NoriPost')
+        .doc(deleteId.toString())
+        .delete();
   }
 }
