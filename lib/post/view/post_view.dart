@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_norithon_team0/post/controller/post_controller.dart';
+import 'package:flutter_norithon_team0/widget/grid_view.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class _PostViewState extends State<PostView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("post"),
+        title: Text("pos"),
         actions: [
           IconButton(
               onPressed: () {},
@@ -31,7 +32,18 @@ class _PostViewState extends State<PostView> {
           builder: (context) {
             return Container(
               padding: EdgeInsets.all(10),
-              child: Text("post"),
+              child: Column(
+                children: [
+                  Text("gridview test"),
+                  Expanded(child: Grid_View()),
+                ],
+              ),
+              // child: Column(
+              //   children: [
+              //     Text("post"),
+              //     Grid_View(),
+              //   ],
+              // ),
             );
           },
         ),
