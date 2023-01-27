@@ -19,25 +19,23 @@ class AddPostViewState extends State<AddPostView> {
 
   Widget postListTile(BuildContext context) {
     return GetBuilder<PostController>(builder: (_postController) {
-      return Expanded(
-          child: GridView.builder(
-              padding: const EdgeInsets.all(20),
-              itemCount: postController.postList.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 1 / 1.5, //item 의 가로 1, 세로 2 의 비율
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  mainAxisExtent: 20),
-              itemBuilder: (context, i) {
-                return Card(
-                  child: Image.asset(
-                    width: double.infinity,
-                    height: 400,
-                    postController.postList[i].imageUrl!,
-                  ),
-                );
-              }));
+      return GridView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemCount: postController.postList.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1 / 1.5, //item 의 가로 1, 세로 2 의 비율
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              mainAxisExtent: 160),
+          itemBuilder: (context, i) {
+            return Image.asset(
+              width: double.infinity,
+              height: 100,
+              postController.postList[i].imageUrl!,
+            );
+          });
     });
   }
 
@@ -48,15 +46,15 @@ class AddPostViewState extends State<AddPostView> {
 
     return Scaffold(
       appBar: AppBar(
-          shadowColor: colorScheme.shadow,
-          elevation: 1.0,
+          shadowColor: colorScheme.primary,
+          elevation: 0,
           centerTitle: true,
-          title: const Text(
+          title: Text(
             '노리 추가하기',
-            // style: textTheme.headline2?.copyWith(
-            //   color: colorScheme.onPrimary,
-            //   fontWeight: FontWeight.bold,
-            // ),
+            style: textTheme.headline3?.copyWith(
+              color: colorScheme.onPrimary,
+              fontSize: 20,
+            ),
           ),
           actions: [
             GestureDetector(
@@ -71,16 +69,85 @@ class AddPostViewState extends State<AddPostView> {
             ),
           ],
         ),
-        body: Column(
-          children: [
-            Text('이런 노리', style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: colorScheme.onPrimary)),
-            RefreshIndicator(
-              onRefresh: postController.fetchPosts,
-              child: Center(
-                child: postListTile(context),
-              ),
+        body: Container(
+            margin: EdgeInsets.all(26),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      '이런 노리들의 루틴은 어때요?',
+                      style: textTheme.headline2?.copyWith(color: colorScheme.onSecondary, fontSize: 23),
+                    ),
+                    Container(margin: const EdgeInsets.fromLTRB(0, 0, 85, 0)),
+                    Image.asset(
+                      height: 15,
+                      'assets/button/button-for-detail.png',
+                    ),
+                  ],
+                ),
+                Container(
+                  padding: EdgeInsets.all(2),
+                  child: Text(
+                    textAlign: TextAlign.left,
+                    '의사선생님이 추천하고 있어요',
+                    style: textTheme.bodyText1?.copyWith(
+                      color: colorScheme.background,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(5),
+                ),
+                Image.asset(
+                  width: 400,
+                  // height: 142,
+                  'assets/image/image-doctor-recommend1.png',
+                ),
+                Container(
+                  margin: EdgeInsets.all(10),
+                ),
+                Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                  Image.asset(
+                    width: 34,
+                    'assets/image/image-doctor-selector.png',
+                  ),
+                ]),
+                Container(
+                  margin: EdgeInsets.all(26),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      '재밌는 노리들의 발견!',
+                      style: textTheme.headline2?.copyWith(
+                        color: colorScheme.onSecondary,
+                      ),
+                    ),
+                    Container(margin: const EdgeInsets.fromLTRB(0, 0, 154, 0)),
+                    Image.asset(
+                      height: 15,
+                      'assets/button/button-for-detail.png',
+                    ),
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.all(10),
+                ),
+                RefreshIndicator(
+                  onRefresh: postController.fetchPosts,
+                  child: Center(child: postListTile(context)),
+                ),
+                Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                  Image.asset(
+                    height: 42,
+                    'assets/button/button-go-postlist.png',
+                  ),
+                ]),
+              ],
             )
-          ],
         )
     );
   }

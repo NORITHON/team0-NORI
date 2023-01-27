@@ -19,10 +19,10 @@ class NoriTheme {
     primary: Color(0xFFFFFFFF),
     onPrimary: Colors.black,
     secondary: Color.fromRGBO(255, 217, 17, 1),
-    onSecondary: Color.fromRGBO(77, 93, 235, 1),
+    onSecondary: Color.fromRGBO(255, 186, 53, 1),
     error: Color(0xffb00020),
     onError: Colors.white,
-    background: Color(0xFFFFFFFF),
+    background: Color.fromRGBO(0, 0, 0, 0.5),
     onBackground: Colors.black,
     surface: Color(0xFFFFFFFF),
     onSurface: Colors.black,
@@ -32,8 +32,9 @@ class NoriTheme {
   );
 
   static const TextTheme textThemeDefault = TextTheme(
-    headline1: TextStyle(fontSize: 16, fontFamily: 'Black'),
-    headline2: TextStyle(fontSize: 15, fontFamily: 'Bold'),
+    headline1: TextStyle(fontSize: 30, fontFamily: 'Black'),
+    headline2: TextStyle(fontSize: 23, fontFamily: 'Bold'),
+    headline3: TextStyle(fontSize: 18, fontFamily: 'Bold'),
     bodyText1: TextStyle(fontSize: 13, fontFamily: 'Regular'),
     bodyText2: TextStyle(fontSize: 11, fontFamily: 'Light'),
   );

@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
       title: 'App Name',
       theme: NoriTheme.lightThemeData,
       // home: const Home(),     navigation bar 추가 시 사용
-      // home: UserAuth(),
-      home: AddPostView(),
+      home: UserAuth(),
+      // home: AddPostView(),
     );
   }
 }
@@ -57,7 +57,8 @@ class _UserAuthState extends State<UserAuth> {
 
     if (uid != null) {
       _postController.initControllerByUid(uid!);
-      Get.to(() => PostView());
+      // Get.to(() => PostView());
+      Get.to(() => AddPostView());
     }
     FlutterNativeSplash.remove();
   }
