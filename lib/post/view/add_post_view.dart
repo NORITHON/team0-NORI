@@ -11,29 +11,30 @@ class AddPostView extends StatefulWidget {
 }
 
 class AddPostViewState extends State<AddPostView> {
-  List<String> postList = ['text1', 'text2'];
-
   Widget postListTile(BuildContext context) {
-    // return GetBuilder<PostController>(builder: (_postController) {
-    // return ListView.builder(
-    return Expanded(
-      child: ListView.builder(
-          padding: const EdgeInsets.all(20),
-          // itemCount: _postController.postList.length * 2,
-          itemCount: 2,
-          itemBuilder: (context, i) {
-            return Text(
-              postList[i],
-              // )
-              // return Card(
-              //   child: ListTile(
-              //     // leading: FlutterLogo(),
-              //     title: Text(postList[i]),
-              //   ),
-            );
-          }),
-    );
-    // });
+    return GetBuilder<PostController>(builder: (_postController) {
+      return Expanded(
+          child: GridView.builder(
+              padding: const EdgeInsets.all(20),
+              itemCount: _postController.postList.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 1 / 1.5, //item 의 가로 1, 세로 2 의 비율
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                mainAxisExtent: 
+              ),
+              itemBuilder: (context, i) {
+                return Card(
+                  child: Image.asset(
+                    'assets/image/image-post-summary1.png',
+                    width: double.infinity,
+                    height: 400,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              }));
+    });
   }
 
   @override
