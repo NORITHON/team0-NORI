@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_norithon_team0/init/view/onboarding_view.dart';
+import 'package:flutter_norithon_team0/post/view/add_post_view.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 import 'post/view/post_view.dart';
 
@@ -38,15 +41,25 @@ class _HomeState extends State<Home> {
             Container(
               margin: const EdgeInsets.all(370),
             ),
-            Image.asset(
-              width: 400,
-              // height: 142,
-              'assets/image/image-button-home1.png',
-            ),
-            Image.asset(
+            GestureDetector(
+              onTap: () {
+                Get.offAll(() => OnboardingView());
+              },
+              child: Image.asset(
                 width: 400,
                 // height: 142,
-                'assets/image/image-button-home2.png'),
+                'assets/image/image-button-home1.png',
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.offAll(() => AddPostView());
+              },
+              child: Image.asset(
+                  width: 400,
+                  // height: 142,
+                  'assets/image/image-button-home2.png'),
+            ),
           ],
         ),
       ),
