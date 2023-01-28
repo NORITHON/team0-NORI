@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_norithon_team0/post/view/home_view.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter_norithon_team0/post/controller/post_controller.dart';
 import 'package:flutter_norithon_team0/post/model/post.dart';
@@ -77,8 +79,12 @@ class _DetailViewState extends State<DetailView> {
                                 ),
                                 // Icon(Icons.zoom_out_map_outlined),
                                 InkWell(
-                                  onTap: () {
-                                    Navigator.pop(context);
+                                  onTap: () async {
+                                    final Uri url = Uri.parse(
+                                        "https://www.youtube.com/watch?v=uYojFHO9KyQ");
+                                    if (await canLaunchUrl(url)) {
+                                      launchUrl(url);
+                                    }
                                   },
                                   child: // ),
                                       Image.asset(
@@ -168,7 +174,7 @@ class _DetailViewState extends State<DetailView> {
                                         onPressed: () async {
                                           await _postController
                                               .addNoriPost(detailPost);
-                                          Get.back();
+                                          Get.put(() => HomeView());
                                         },
                                         style: ElevatedButton.styleFrom(
                                           shape: RoundedRectangleBorder(

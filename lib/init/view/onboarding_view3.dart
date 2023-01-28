@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_norithon_team0/init/controller/onboarding_controller.dart';
+import 'package:flutter_norithon_team0/post/controller/post_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -15,10 +16,11 @@ class OnboardingView3 extends StatefulWidget {
 
 class _OnboardingView3State extends State<OnboardingView3> {
   static final storage = FlutterSecureStorage();
-  
+
   @override
   Widget build(BuildContext context) {
     // final controller = Get.put(OnboardingController());
+    final PostController _postController = Get.find();
 
     return Scaffold(
       body: Stack(
@@ -41,8 +43,7 @@ class _OnboardingView3State extends State<OnboardingView3> {
                             "assets/button/button-yes.png"),
                   ),
                   InkWell(
-                    onTap: () {
-                    },
+                    onTap: () {},
                     child: // ),
                         Image.asset(
                             width: 70,
@@ -70,7 +71,9 @@ class _OnboardingView3State extends State<OnboardingView3> {
                   ),
                   InkWell(
                     onTap: () async {
-                      await storage.write(key: "user", value: DateTime.now().toString());
+                      String now = DateTime.now().toString();
+                      await storage.write(key: "user", value: now);
+                      await _postController.initControllerByUid(now);
                       Get.to(() => AddPostView());
                     },
                     child: // ),
@@ -84,8 +87,9 @@ class _OnboardingView3State extends State<OnboardingView3> {
                   ),
                   InkWell(
                     onTap: () async {
-                      await storage.write(
-                          key: "user", value: DateTime.now().toString());
+                      String now = DateTime.now().toString();
+                      await storage.write(key: "user", value: now);
+                      await _postController.initControllerByUid(now);
                       Get.offAll(() => HomeView());
                     },
                     child: // ),

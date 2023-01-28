@@ -58,8 +58,8 @@ class _UserAuthState extends State<UserAuth> {
     uid = await storage.read(key: "user");
 
     if (uid != null) {
-      _postController.initControllerByUid(uid!);
-      Get.offAll(() => Home());
+      _postController.initControllerByCurrentUser(uid!);
+      Get.offAll(() => HomeView());
     }
     FlutterNativeSplash.remove();
   }
@@ -76,6 +76,6 @@ class _UserAuthState extends State<UserAuth> {
 
   @override
   Widget build(BuildContext context) {
-    return const OnboardingView();
+    return const Home();
   }
 }
