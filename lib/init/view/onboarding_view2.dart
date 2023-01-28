@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_norithon_team0/init/view/onboarding_view3.dart';
+import 'package:flutter_norithon_team0/init/controller/onboarding_controller.dart';
 import 'package:get/get.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import 'package:flutter_norithon_team0/post/view/add_post_view.dart';
+import 'package:flutter_norithon_team0/post/view/home_view.dart';
 
 class OnboardingView2 extends StatefulWidget {
   const OnboardingView2({super.key});
@@ -10,6 +15,8 @@ class OnboardingView2 extends StatefulWidget {
 }
 
 class _OnboardingView2State extends State<OnboardingView2> {
+  static final storage = FlutterSecureStorage();
+  
   @override
   Widget build(BuildContext context) {
     // final controller = Get.put(OnboardingController());
@@ -36,7 +43,6 @@ class _OnboardingView2State extends State<OnboardingView2> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pop(context);
                     },
                     child: // ),
                         Image.asset(
@@ -46,7 +52,6 @@ class _OnboardingView2State extends State<OnboardingView2> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pop(context);
                       print("hi");
                     },
                     child: // ),
@@ -65,8 +70,10 @@ class _OnboardingView2State extends State<OnboardingView2> {
                     width: 20,
                   ),
                   InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
+                    onTap: () async {
+                      await storage.write(
+                          key: "user", value: DateTime.now().toString());
+                      Get.offAll(() => AddPostView());
                     },
                     child: // ),
                         Image.asset(

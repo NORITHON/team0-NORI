@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_norithon_team0/init/controller/onboarding_controller.dart';
 import 'package:get/get.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import 'package:flutter_norithon_team0/post/view/add_post_view.dart';
+import 'package:flutter_norithon_team0/post/view/home_view.dart';
 
 class OnboardingView3 extends StatefulWidget {
   const OnboardingView3({super.key});
@@ -9,6 +14,8 @@ class OnboardingView3 extends StatefulWidget {
 }
 
 class _OnboardingView3State extends State<OnboardingView3> {
+  static final storage = FlutterSecureStorage();
+  
   @override
   Widget build(BuildContext context) {
     // final controller = Get.put(OnboardingController());
@@ -35,7 +42,6 @@ class _OnboardingView3State extends State<OnboardingView3> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pop(context);
                     },
                     child: // ),
                         Image.asset(
@@ -45,7 +51,6 @@ class _OnboardingView3State extends State<OnboardingView3> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pop(context);
                       print("hi");
                     },
                     child: // ),
@@ -64,8 +69,9 @@ class _OnboardingView3State extends State<OnboardingView3> {
                     width: 20,
                   ),
                   InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
+                    onTap: () async {
+                      await storage.write(key: "user", value: DateTime.now().toString());
+                      Get.to(() => AddPostView());
                     },
                     child: // ),
                         Image.asset(
@@ -77,8 +83,10 @@ class _OnboardingView3State extends State<OnboardingView3> {
                     width: 310,
                   ),
                   InkWell(
-                    onTap: () {
-                      //home으로 감
+                    onTap: () async {
+                      await storage.write(
+                          key: "user", value: DateTime.now().toString());
+                      Get.offAll(() => HomeView());
                     },
                     child: // ),
                         Image.asset(

@@ -19,7 +19,6 @@ class _DetailViewState extends State<DetailView> {
   void initState() {
     detailPost = _postController.selectedPost!;
     super.initState();
-
   }
 
   @override
@@ -134,31 +133,52 @@ class _DetailViewState extends State<DetailView> {
                               SizedBox(
                                 width: 20,
                               ),
-                              if (!_postController.isNori)
-                                SizedBox(
-                                  height: 59,
-                                  width: 272,
-                                  child: ElevatedButton(
-                                    child: const Text(
-                                      '오늘의 노리 추가하기 ',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    onPressed: () async {
-                                      await _postController
-                                          .addNoriPost(detailPost);
-                                      Get.back();
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(16.0),
+                              _postController.isNori
+                                  ? SizedBox(
+                                      height: 59,
+                                      width: 272,
+                                      child: ElevatedButton(
+                                        child: const Text(
+                                          '오늘의 노리 추가됨',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        onPressed: () {},
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(16.0),
+                                          ),
+                                          primary: Color(0xFFEEEEEE),
+                                        ),
                                       ),
-                                      primary: Color(0xFFFFBA35),
+                                    )
+                                  : SizedBox(
+                                      height: 59,
+                                      width: 272,
+                                      child: ElevatedButton(
+                                        child: const Text(
+                                          '오늘의 노리 추가하기 ',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        onPressed: () async {
+                                          await _postController
+                                              .addNoriPost(detailPost);
+                                          Get.back();
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(16.0),
+                                          ),
+                                          primary: Color(0xFFFFBA35),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
                             ],
                           )
                         ],
