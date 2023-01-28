@@ -49,15 +49,6 @@ class _HomeState extends State<Home> {
                 'assets/image/image-button-home1.png',
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Get.offAll(() => AddPostView());
-              },
-              child: Image.asset(
-                  width: 400,
-                  // height: 142,
-                  'assets/image/image-button-home2.png'),
-            ),
           ],
         ),
       ),

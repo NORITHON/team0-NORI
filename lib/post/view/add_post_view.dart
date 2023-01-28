@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_norithon_team0/home.dart';
 import 'package:flutter_norithon_team0/post/controller/post_controller.dart';
 import 'package:flutter_norithon_team0/post/view/detail_view.dart';
+import 'package:flutter_norithon_team0/post/view/feedback_view.dart';
 import 'package:flutter_norithon_team0/widget/grid_view.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -111,10 +112,15 @@ class AddPostViewState extends State<AddPostView> {
                 Container(
                   margin: EdgeInsets.all(5),
                 ),
-                Image.asset(
-                  width: 400,
-                  // height: 142,
-                  'assets/image/image-doctor-recommend1.png',
+                GestureDetector(
+                  onTap: () {
+                    Get.to(FeedBackView());
+                  },
+                  child: Image.asset(
+                    width: 400,
+                    // height: 142,
+                    'assets/image/image-doctor-recommend1.png',
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.all(10),

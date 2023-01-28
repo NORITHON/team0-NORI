@@ -16,10 +16,10 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
-  OnboardingController _onboardingController = Get.put(OnboardingController());
   static final storage = FlutterSecureStorage();
   PostController _postController = Get.find();
-  
+  int index = -1;
+
   @override
   Widget build(BuildContext context) {
     // final controller = Get.put(OnboardingController());
@@ -36,33 +36,81 @@ class _OnboardingViewState extends State<OnboardingView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  InkWell(
-                    onTap: () {},
-                    child: // ),
-                        Image.asset(
-                            width: 70,
-                            height: 70,
-                            "assets/button/button-yes.png"),
-                  ),
-                  InkWell(
-                    onTap: () {
-                    },
-                    child: // ),
-                        Image.asset(
-                            width: 70,
-                            height: 70,
-                            'assets/button/button-normal.png'),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      print("hi");
-                    },
-                    child: // ),
-                        Image.asset(
-                            width: 70,
-                            height: 70,
-                            'assets/button/button-no.png'),
-                  ),
+                  index == 0
+                      ? InkWell(
+                          onTap: () {
+                            setState(() {
+                              index = -1;
+                            });
+                          },
+                          child: // ),
+                              Image.asset(
+                                  width: 70,
+                                  height: 70,
+                                  "assets/button/button-yes-click.png"),
+                        )
+                      : InkWell(
+                          onTap: () {
+                            setState(() {
+                              index = 0;
+                            });
+                          },
+                          child: // ),
+                              Image.asset(
+                                  width: 70,
+                                  height: 70,
+                                  "assets/button/button-yes.png"),
+                        ),
+                  index == 1
+                      ? InkWell(
+                          onTap: () {
+                            setState(() {
+                              index = -1;
+                            });
+                          },
+                          child: // ),
+                              Image.asset(
+                                  width: 70,
+                                  height: 70,
+                                  'assets/button/button-normal-click.png'),
+                        )
+                      : InkWell(
+                          onTap: () {
+                            setState(() {
+                              index = 1;
+                            });
+                          },
+                          child: // ),
+                              Image.asset(
+                                  width: 70,
+                                  height: 70,
+                                  'assets/button/button-normal.png'),
+                        ),
+                  index == 2
+                      ? InkWell(
+                          onTap: () {
+                            setState(() {
+                              index = -1;
+                            });
+                          },
+                          child: // ),
+                              Image.asset(
+                                  width: 70,
+                                  height: 70,
+                                  'assets/button/button-no-click.png'),
+                        )
+                      : InkWell(
+                          onTap: () {
+                            setState(() {
+                              index = 2;
+                            });
+                          },
+                          child: // ),
+                              Image.asset(
+                                  width: 70,
+                                  height: 70,
+                                  'assets/button/button-no.png'),
+                        ),
                 ],
               ),
               SizedBox(height: 30),
@@ -77,7 +125,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       String now = DateTime.now().toString();
                       await storage.write(key: "user", value: now);
                       await _postController.initControllerByUid(now);
-                      Get.to(() => AddPostView());
+                      Get.offAll(() => AddPostView());
                     },
                     child: // ),
                         Image.asset(
@@ -90,7 +138,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(() => OnboardingView2());
+                      Get.offAll(() => OnboardingView2());
                     },
                     child: // ),
                         Image.asset(

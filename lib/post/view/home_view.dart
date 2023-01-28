@@ -129,6 +129,7 @@ class _HomeViewState extends State<HomeView> {
                 //color: Colors.grey,
                 height: 30,
                 thickness: 9,
+                color: colorScheme.tertiary,
               ),
               SizedBox(
                 height: 10,

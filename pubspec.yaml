@@ -144,6 +144,10 @@ flutter:
         - assets/image/image-post-title4.png
         - assets/image/image-post-content4.png
 
+        - assets/image/image-feedback.png
+        - assets/image/image-feedback_list.png
+        - assets/image/image-feedback_list2.png
+
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware
 
