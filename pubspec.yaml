@@ -106,9 +106,11 @@ flutter:
         - assets/image/image-todo1.png
         - assets/image/image-todo2.png
         - assets/image/image-todo3.png
+        - assets/image/image-todo4.png
         - assets/image/image-selected-todo1.png
         - assets/image/image-selected-todo2.png
         - assets/image/image-selected-todo3.png
+        - assets/image/image-selected-todo4.png
         - assets/image/image-add.png
         - assets/image/image-profile.png
         - assets/image/image-bar.png
@@ -131,6 +133,14 @@ flutter:
         - assets/image/image-doctor-selector.png
         - assets/button/button-go-postlist.png
         - assets/button/button-for-detail.png
+
+        #more post content
+        - assets/image/image-post-title2.png
+        - assets/image/image-post-content2.png
+        - assets/image/image-post-title3.png
+        - assets/image/image-post-content3.png
+        - assets/image/image-post-title4.png
+        - assets/image/image-post-content4.png
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware
