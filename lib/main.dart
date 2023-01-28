@@ -4,11 +4,9 @@ import 'package:flutter_norithon_team0/post/view/add_post_view.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
-import 'package:flutter_norithon_team0/post/view/post_view.dart';
 import 'package:flutter_norithon_team0/post/view/home_view.dart';
 import 'package:flutter_norithon_team0/util/theme.dart';
 import 'package:flutter_norithon_team0/post/controller/post_controller.dart';
-import 'package:flutter_norithon_team0/init/view/onboarding_screen.dart';
 import 'package:flutter_norithon_team0/init/view/onboarding_view.dart';
 
 import 'home.dart';
@@ -57,10 +55,10 @@ class _UserAuthState extends State<UserAuth> {
   _onBoarding() async {
     uid = await storage.read(key: "user");
 
-    if (uid != null) {
-      _postController.initControllerByCurrentUser(uid!);
-      Get.offAll(() => HomeView());
-    }
+    // if (uid != null) {
+    //   _postController.initControllerByCurrentUser(uid!);
+    //   Get.offAll(() => Home());
+    // }
     FlutterNativeSplash.remove();
   }
 

@@ -4,8 +4,6 @@ import 'package:flutter_norithon_team0/post/view/add_post_view.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get.dart';
 
-import 'post/view/post_view.dart';
-
 class Home extends StatefulWidget {
   const Home({super.key});
 
