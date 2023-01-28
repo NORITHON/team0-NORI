@@ -153,15 +153,6 @@ class AddPostViewState extends State<AddPostView> {
                   onRefresh: _postController.fetchPosts,
                   child: Center(child: postListTile(context)),
                 ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        height: 42,
-                        'assets/button/button-go-postlist.png',
-                      ),
-                    ]),
               ],
             )));
   }
