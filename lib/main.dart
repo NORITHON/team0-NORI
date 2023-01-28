@@ -59,7 +59,7 @@ class _UserAuthState extends State<UserAuth> {
 
     if (uid != null) {
       _postController.initControllerByUid(uid!);
-      Get.offAll(() => HomeView());
+      Get.offAll(() => Home());
     }
     FlutterNativeSplash.remove();
   }

@@ -117,6 +117,11 @@ flutter:
         - assets/image/image-onboarding3.png
         - assets/button/button-kid-icon.png
 
+        #home.dart
+        - assets/image/image-button-home1.png
+        - assets/image/image-button-home2.png
+        - assets/image/image-home-bg.png
+
         #post_add_view.dart
         - assets/image/image-doctor-recommend1.png
         - assets/image/image-post-summary1.png
