@@ -10,6 +10,7 @@ class PostController extends GetxController {
   List<Post> favoritePostList = [];
   List<Post> noriPostList = [];
   List<bool> completeTodo = [];
+  int completeCount = 0;
   Post? selectedPost;
   String? uid;
   bool isLoaded = false;
@@ -35,6 +36,11 @@ class PostController extends GetxController {
   }
 
   Future<void> toggleCompleteTodo(int index) async {
+    if (completeTodo[index])
+      completeCount--;
+    else
+      completeCount++;
+
     completeTodo[index] = !completeTodo[index];
     await _postApplication.updateNoriPostCompleted(
         noriPostList[index].id!, pickedDate, uid!, completeTodo[index]);
@@ -117,12 +123,14 @@ class PostController extends GetxController {
 
   Future<void> fetchNoriPosts() async {
     completeTodo = [];
+    completeCount = 0;
     noriPostList = [];
     await _postApplication.getNoriPosts(
         noriPostList, completeTodo, pickedDate, uid!);
     for (int i = 0; i < noriPostList.length; i++) {
-      completeTodo.add(false);
+      if (completeTodo[i]) completeCount++;
     }
+
     update();
   }
 
@@ -136,10 +144,24 @@ class PostController extends GetxController {
     await fetchNoriPosts();
   }
 
+  Future<void> initControllerByCurrentUser(String uid) async {
+    this.uid = uid;
+    await fetchPosts();
+    await fetchFavoritePosts();
+    await fetchNoriPosts();
+  }
+
   Future<void> initControllerByUid(String uid) async {
     this.uid = uid;
     await fetchPosts();
     await fetchFavoritePosts();
+    await fetchNoriPosts();
+
+    for (int i = 0; i < 3; i++) {
+      if (postList.length > i && noriPostList.length < 1) {
+        await _postApplication.createNoriPost(postList[i], pickedDate, uid);
+      }
+    }
     await fetchNoriPosts();
   }
 
@@ -148,7 +170,7 @@ class PostController extends GetxController {
     fetchPosts().then((_) async {
       var storeData = await storage.read(key: "user");
       if (storeData != null) {
-        await initControllerByUid(storeData);
+        await initControllerByCurrentUser(storeData);
       }
       isLoaded = true;
       getDateByString();

@@ -26,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    
+
     return Scaffold(
       body: GetBuilder<PostController>(builder: (_) {
         if (_postController.isLoaded) {
@@ -189,11 +189,13 @@ class _HomeViewState extends State<HomeView> {
                               .postList[index].selectedBannerImageUrl!
                           : _postController.postList[index].bannerImageUrl!;
                       return InkWell(
-                        onTap: () {
+                        onTap: () async {
                           _postController.toggleCompleteTodo(index);
                           if (_postController.postList[index].hasDetail!) {
                             _postController
                                 .selectPost(_postController.postList[index]);
+                            _postController.isNori = await _postController
+                                .isTodayNori(_postController.postList[index]);
                             Get.to(() => const DetailView());
                           }
                         },

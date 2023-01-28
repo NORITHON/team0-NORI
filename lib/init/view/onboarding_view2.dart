@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_norithon_team0/init/view/onboarding_view3.dart';
 import 'package:flutter_norithon_team0/init/controller/onboarding_controller.dart';
+import 'package:flutter_norithon_team0/post/controller/post_controller.dart';
+import 'package:flutter_norithon_team0/post/model/post.dart';
 import 'package:get/get.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -16,7 +18,8 @@ class OnboardingView2 extends StatefulWidget {
 
 class _OnboardingView2State extends State<OnboardingView2> {
   static final storage = FlutterSecureStorage();
-  
+  PostController _postController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     // final controller = Get.put(OnboardingController());
@@ -42,8 +45,7 @@ class _OnboardingView2State extends State<OnboardingView2> {
                             "assets/button/button-yes.png"),
                   ),
                   InkWell(
-                    onTap: () {
-                    },
+                    onTap: () {},
                     child: // ),
                         Image.asset(
                             width: 70,
@@ -71,9 +73,10 @@ class _OnboardingView2State extends State<OnboardingView2> {
                   ),
                   InkWell(
                     onTap: () async {
-                      await storage.write(
-                          key: "user", value: DateTime.now().toString());
-                      Get.offAll(() => AddPostView());
+                      String now = DateTime.now().toString();
+                      await storage.write(key: "user", value: now);
+                      await _postController.initControllerByUid(now);
+                      Get.to(() => AddPostView());
                     },
                     child: // ),
                         Image.asset(

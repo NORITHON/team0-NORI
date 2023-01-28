@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_norithon_team0/init/view/onboarding_view2.dart';
 import 'package:flutter_norithon_team0/init/controller/onboarding_controller.dart';
+import 'package:flutter_norithon_team0/post/controller/post_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -17,6 +18,7 @@ class OnboardingView extends StatefulWidget {
 class _OnboardingViewState extends State<OnboardingView> {
   OnboardingController _onboardingController = Get.put(OnboardingController());
   static final storage = FlutterSecureStorage();
+  PostController _postController = Get.find();
   
   @override
   Widget build(BuildContext context) {
@@ -72,9 +74,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                   ),
                   InkWell(
                     onTap: () async {
-                      await storage.write(
-                          key: "user", value: DateTime.now().toString());
-                      Get.offAll(() => AddPostView());
+                      String now = DateTime.now().toString();
+                      await storage.write(key: "user", value: now);
+                      await _postController.initControllerByUid(now);
+                      Get.to(() => AddPostView());
                     },
                     child: // ),
                         Image.asset(

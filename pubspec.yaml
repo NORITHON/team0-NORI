@@ -46,6 +46,7 @@ dependencies:
     flutter_svg: ^1.1.6
     introduction_screen: ^3.1.4
     intl: ^0.17.0
+    url_launcher: ^6.1.8
 
 dev_dependencies:
     flutter_test:
@@ -112,6 +113,7 @@ flutter:
         - assets/image/image-add.png
         - assets/image/image-profile.png
         - assets/image/image-bar.png
+        - assets/image/image-bar-up.png
         - assets/image/image-onboarding1.png
         - assets/image/image-onboarding2.png
         - assets/image/image-onboarding3.png
