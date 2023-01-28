@@ -22,31 +22,34 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final pageList = [
-      const PostView(),
-    ];
 
-    // TODO: navigation bar 있다면 추가 return GetBuilder<NavigationController>
     return Scaffold(
-      body: Center(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage("assets/image/image-home-bg.png"), // 배경 이미지
+          ),
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          children: [
+            Container(
+              margin: const EdgeInsets.all(370),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Image.asset(
+              width: 400,
+              // height: 142,
+              'assets/image/image-button-home1.png',
             ),
+            Image.asset(
+                width: 400,
+                // height: 142,
+                'assets/image/image-button-home2.png'),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    ); 
   }
 }
